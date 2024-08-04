@@ -14,14 +14,23 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
         },
       },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192, // Inline files smaller than 8kb
+              name: 'assets/[name].[hash].[ext]',
+            },
+          },
+        ],
       },
     ],
   },
@@ -31,7 +40,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    static: path.join(__dirname, 'dist'), // Updated from contentBase
+    static: path.join(__dirname, 'dist'),
     compress: true,
     port: 9000,
   },

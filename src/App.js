@@ -1,41 +1,19 @@
-import React, { useState } from 'react';
-import { Container, Form, Button, ListGroup } from 'react-bootstrap';
+// src/App.js
+import React from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import './App.css'; // Import the CSS file
 
-function App() {
-  const [todos, setTodos] = useState([]);
-  const [input, setInput] = useState('');
-
-  const addTodo = (e) => {
-    e.preventDefault();
-    if (input.trim()) {
-      setTodos([...todos, input]);
-      setInput('');
-    }
-  };
-
+const App = () => {
   return (
-    <Container>
-      <h1 className="mt-4">Todo App</h1>
-      <Form onSubmit={addTodo} className="mt-4">
-        <Form.Group controlId="formTodo">
-          <Form.Control
-            type="text"
-            placeholder="Enter a new todo"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit" className="mt-2">
-          Add Todo
-        </Button>
-      </Form>
-      <ListGroup className="mt-4">
-        {todos.map((todo, index) => (
-          <ListGroup.Item key={index}>{todo}</ListGroup.Item>
-        ))}
-      </ListGroup>
-    </Container>
+    <div>
+      <Header />
+      <main className="container mt-4">
+        {/* Main content goes here */}
+      </main>
+      <Footer />
+    </div>
   );
-}
+};
 
 export default App;

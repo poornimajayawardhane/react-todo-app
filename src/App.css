@@ -1,0 +1,11 @@
+/* src/App.css */
+body {
+  background: linear-gradient(to bottom, #20cff2, #2adf88); 
+}
+  
+  .container {
+    background-color:  #94e5f593;
+    border-radius: 8px; /* Optional: Add some border radius for a rounded look */
+    padding: 20px; /* Optional: Add some padding around content */
+  }
+  
