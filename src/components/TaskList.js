@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PencilSquare, Trash } from 'react-bootstrap-icons';
+import { Trash } from 'react-bootstrap-icons';
 import './TaskList.css';
 
 const TaskList = () => {
@@ -18,7 +18,7 @@ const TaskList = () => {
 
   const handleSaveTask = () => {
     if (newTask.trim() !== '') {
-      setTasks([...tasks, newTask]);
+      setTasks([...tasks, { text: newTask, isEditing: false }]);
       setNewTask('');
     }
   };
@@ -28,12 +28,43 @@ const TaskList = () => {
     setTasks(newTasks);
   };
 
+  const toggleEditing = (index) => {
+    const newTasks = tasks.map((task, i) =>
+      i === index ? { ...task, isEditing: !task.isEditing } : task
+    );
+    setTasks(newTasks);
+  };
+
+  const handleTaskChange = (event, index) => {
+    const newTasks = tasks.map((task, i) =>
+      i === index ? { ...task, text: event.target.value } : task
+    );
+    setTasks(newTasks);
+  };
+
+  const handleTaskKeyPress = (event, index) => {
+    if (event.key === 'Enter') {
+      toggleEditing(index);
+    }
+  };
+
   return (
     <div className="task-list-container">
       <div className="task-list">
         {tasks.map((task, index) => (
           <div key={index} className="task-item">
-            <span>{task}</span>
+            {task.isEditing ? (
+              <input
+                type="text"
+                value={task.text}
+                onChange={(event) => handleTaskChange(event, index)}
+                onKeyPress={(event) => handleTaskKeyPress(event, index)}
+                className="task-input"
+                onBlur={() => toggleEditing(index)} // Save when input loses focus
+              />
+            ) : (
+              <span onClick={() => toggleEditing(index)}>{task.text}</span>
+            )}
             <Trash className="remove-icon" onClick={() => handleRemoveTask(index)} />
           </div>
         ))}
@@ -46,7 +77,6 @@ const TaskList = () => {
             placeholder="Enter your task"
             className="task-input"
           />
-          <Trash className="remove-icon" />
         </div>
       </div>
       <button className="save-button" onClick={handleSaveTask}>Save</button>
