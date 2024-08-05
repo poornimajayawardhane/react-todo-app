@@ -1,0 +1,61 @@
+.task-list-container {
+  position: relative;
+  height: 100%;
+  padding: 20px;
+}
+
+.task-list {
+  flex: 1;
+}
+
+.task-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.task-input {
+  flex: 1;
+  padding: 5px;
+  margin-right: 10px;
+  background-color: transparent; /* Make the background transparent */
+  border: none; /* Remove all borders */
+  border-bottom: 2px solid #e69769; /* Add only bottom border */
+  color: #000; /* Set text color */
+  outline: none; /* Remove outline on focus */
+}
+
+.task-input:focus {
+  border-bottom-color: #d96d2a; /* Change bottom border color on focus */
+}
+
+.remove-icon {
+  cursor: pointer;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.edit-icon, .remove-icon {
+  cursor: pointer;
+}
+
+.save-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 40px;
+  background-color: #e69769;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #0056b3;
+}

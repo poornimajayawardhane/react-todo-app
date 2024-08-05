@@ -1,17 +1,18 @@
-// src/App.js
 import React from 'react';
 import Header from './components/Header';
-import Footer from './components/Footer';
-import './App.css'; // Import the CSS file
+import TaskList from './components/TaskList';
+import './index.css';
 
 const App = () => {
   return (
-    <div>
+    <div id="root">
       <Header />
-      <main className="container mt-4">
-        {/* Main content goes here */}
-      </main>
-      <Footer />
+      <div className="main-content">
+        <TaskList />
+      </div>
+      <footer className="footer">
+        {/* Footer content here */}
+      </footer>
     </div>
   );
 };
